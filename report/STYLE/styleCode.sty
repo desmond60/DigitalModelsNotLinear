@@ -1,0 +1,15 @@
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\DeclareCaptionFont{White}{\color{White}}
+\DeclareCaptionFormat{listing}{\colorbox[RGB]{179,114,91}{\parbox{\textwidth}{#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=White,textfont=White}
+
+\definecolor{LightGray}{gray}{0.96}
+\definecolor{TitleBack}{RGB}{179,114,91}
+\usemintedstyle{xcode}
+
+\usepackage[most]{tcolorbox}
+\newtcolorbox{mybox}{colback=TitleBack,
+colframe=black!75,coltext=white,boxrule=1pt}

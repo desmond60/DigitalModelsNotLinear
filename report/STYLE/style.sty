@@ -1,0 +1,156 @@
+% Пакеты без параметров
+\usepackage {
+	caption,		% Для изменения заголовков
+	float,			% Для изменения расположения рисунков и таблиц
+	multirow,		% Для таблиц
+	multicol,       % Объединение столбцов для таблиц
+	tabularx,       % Для таблиц (разделения)
+	subcaption,     % Для подписей
+	mathtext,	    % Для русских букв в формуле
+	array,			% Для таблиц и формул
+	amsfonts,       % Шрифты для математики
+	amsmath,		% Математические символы и длинные формулы
+	amssymb,		% Больше математических символов
+	amsthm,         % Нумерация теорем
+	enumerate,		% Для списков
+	indentfirst,	% Для отступов в первом параграфе
+	cmap,			% Копирование и поиск текста на русском в PDF
+    import,         % Импортирование tex файлов
+    longtable,      % Для таблиц
+    listings,       % Для вставки кода
+    fancyhdr,       % Настройка колонтитулов
+    xcolor,         % Поддержка разных цветов
+    xurl,           % Красивая вставка ссылок
+    csvsimple,      % Вставка простых табличек,
+    pgfplotstable,  % Вставка сложных табличек
+    ulem,           % Для подчеркиваний и перечеркиваний текста
+}
+
+% ***** Для красивой нумерации ***** %
+\usepackage[shortlabels]{enumitem}
+
+% ***** Поддержка нескольких tex-файлов ***** %
+\usepackage[subpreambles=true]{standalone} 
+
+% ***** Вставка изображений на задний фон ***** %
+\usepackage[pages=some]{background}
+
+% ***** Кодировка и русский ***** %
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+
+% ***** Для вставки картинок ***** %
+\usepackage[pdftex]{graphicx}
+
+% ***** Интервалы страницы ***** %
+\usepackage[left=3cm, top=2cm, right=1cm, bottom=2cm]{geometry}
+
+% Для автоматического создания ссылок в тексте  и оглавлении
+\usepackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
+
+% ***** Переопределения стилей заголовков ***** %
+\usepackage[indentfirst]{titlesec}
+
+% ****************************************************************** %
+
+% Полуторный междустрочный интервал
+\linespread{1.5}
+
+% Отступ для абзаца
+\setlength{\parindent}{1cm}
+
+% Убрать разделение между пунктами списка и отступы до и после
+\setlist{noitemsep, topsep=0pt}
+
+\sloppy             % Избавляемся от переполнений
+\clubpenalty=10000  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
+
+% Параметры названия для иллюстраций (Рисунок 1 - <название>)
+\DeclareCaptionLabelFormat{PictureCaptionFormat}{Рисунок {#2}}
+\captionsetup[figure] {
+	labelformat=PictureCaptionFormat,
+	skip=0pt,
+	format=hang,
+	justification=raggedright,
+	labelsep=endash
+}
+
+% Параметры названия для таблиц (Таблица 1 - <название>)
+\DeclareCaptionLabelFormat{TableCaptionFormat}{Таблица {#2}}
+\captionsetup[table] {
+	labelformat=TableCaptionFormat,
+	skip=0pt,
+	format=hang,
+	justification=raggedright,
+	singlelinecheck=off,
+	labelsep=endash
+}
+
+% Все рисунки и таблицы будут располагаться в том месте, в котором из вставили в коде
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+% Для точек в содержание
+\usepackage{tocbasic}
+\DeclareTOCStyleEntry[
+linefill=\bfseries
+\TOCLineLeaderFill
+]{tocline}{chapter}
+
+% Точки после цифры в заголовках, в содеражнии, в таблицах и рисунках
+\renewcommand{\thechapter}{\arabic{chapter}.}
+\renewcommand{\thesection}{\thechapter\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+
+\renewcommand{\theequation}{\thechapter\arabic{equation}}
+\renewcommand{\thefigure}{\thechapter\arabic{figure}}
+\renewcommand{\thetable}{\thechapter\arabic{table}}
+
+
+\titleformat{\chapter}[block] {
+	\normalfont
+	\large
+	\bfseries
+	\vspace{-3cm}
+	%\hspace{1cm}
+}{\thechapter}{0em}{ }
+
+\titleformat{\section}[block]{
+	\normalfont
+	\large
+	\bfseries
+	%\hspace{1cm}
+}{\thesection}{0em}{ }
+
+\titleformat{\subsection}[block]{
+	\normalfont
+	\normalsize
+	\bfseries
+	%\hspace{1cm}
+}{\thesubsection}{0em}{ }
+% *********************************** %
+
+% ******************************* Математика ***************************** %
+
+% Шрифты для собственной математики
+\DeclareMathAlphabet{\mathsfn}{OT1}{OMS}{m}{n}
+
+\newcommand{\parens}[1]{\left ({#1} \right )}          % Круглые скобки
+\newcommand{\brackets}[1]{\left [{#1} \right ]}        % Квадратные скобки
+\newcommand{\braces}[1]{ \left\{ {#1} \right\} }       % Фигурные скобки
+\newcommand{\norm}[1]{ \|{#1}\| }                      % Норма || arg ||
+\newcommand\parder[2]{\frac{\partial #1}{\partial #2}} % Частная производная
+\DeclareMathOperator{\grad}{grad}                      % Градиент
+\DeclareMathOperator{\divergence}{div}                 % Дивергенция
+\DeclareMathOperator{\curl}{rot}                       % Ротор
+\newcommand{\der}{\partial}                            % Символ дифференцирования
+\newcommand{\determinant}{\, \mathsfn{det} \,}         % Определитель
+
+\newcommand{\SUM}{\displaystyle\sum\limits}  % \SUM очень большая сумма (информация о сумме под и над её знаком)
+\newcommand{\mtext}[1] {\, \text{#1} \,}     % используется для вставки слов в математические формулы
+\newcommand{\Int} {\displaystyle\int}        % \Int большой интеграл (область правее знака интеграла)
+\newcommand{\INT} {\displaystyle\int\limits} % \INT очень большой интеграл (промежуток над и под знаком интеграла)
+\newcommand{\Sum} {\displaystyle\sum}        % \Sum большая сумма (информация о сумме правее её знака)
+% *********************************************************************** %
